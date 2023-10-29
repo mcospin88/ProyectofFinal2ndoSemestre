@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CategoriasYTemporadasForm extends JFrame {
+    private JTextField textField;
+    private JComboBox<String> comboBox;
+
+    public CategoriasYTemporadasForm() {
+        setTitle("Categorias y Temporadas");
+        setSize(400, 200);
+        getContentPane().setBackground(Color.YELLOW);
+        setLayout(new FlowLayout());
+
+        textField = new JTextField(20);
+        add(textField);
+
+        comboBox = new JComboBox<>();
+        add(comboBox);
+
+        Font italicFont = new Font("Arial", Font.ITALIC, 14);
+        textField.setFont(italicFont);
+        comboBox.setFont(italicFont);
+
+        textField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String categoriaTemporada = textField.getText();
+                comboBox.addItem(categoriaTemporada);
+                textField.setText("");
+            }
+        });
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new CategoriasYTemporadasForm();
+            }
+        });
+    }
+}
